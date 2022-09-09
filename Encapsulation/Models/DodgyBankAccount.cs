@@ -20,7 +20,7 @@ namespace Encapsulation.Models
             AddReward();
         }
 
-        public void GetAccountBalanceDetails()
+        public void GetAccountBalanceDetails() 
         {
             Console.WriteLine($"Your account balance is {AccountBalance}");
         }

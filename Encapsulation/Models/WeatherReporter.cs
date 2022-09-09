@@ -3,59 +3,66 @@ namespace Encapsulation.Models
 {
     public class WeatherReporter
     {
-        public string Location;
-        public double Temperature;
+        private string _location;
+        private double _temperatureInCelsius;
+        private const double FAHRENHEIT_CONSTANT = (9.0 / 5.0);
+        private const int FAHRENHEIT_OFFSET   = 32;
+        private const int NORMAL_TEMPERATURE_UPPER_LIMIT  = 30;
+        private const int COLD_TEMPERATURE_UPPER_LIMIT    = 10;
 
-        public WeatherReporter(string location, double temperature)
+        public WeatherReporter()
         {
-            Location = location;
-            Temperature = temperature;
+            _location = "";
+            _temperatureInCelsius = 0;
         }
 
-        public string Print()
+        public string GetWeatherReport(string location, double temperatureInCelsius)
         {
-            double newTemp = (9.0 / 5.0) * Temperature + 32;
-            return $"I am in {Location} and it is {Check1()}. {Check2()}. The temperature in Fahrenheit is {newTemp}.";
+            _location = location;
+            _temperatureInCelsius = temperatureInCelsius;
+            if (_location != "" && _location != null )
+            {
+                double TempInFahrenheit = FAHRENHEIT_CONSTANT * _temperatureInCelsius + FAHRENHEIT_OFFSET;
+                TempInFahrenheit = (double)Math.Round((Decimal)TempInFahrenheit, 2, MidpointRounding.AwayFromZero);
+                return $"I am in {_location} and it is {PickWetherEmoji()}. {PickTemperatureEmoji()}. The temperature in Fahrenheit is {TempInFahrenheit}.";
+            }
+            throw new ArgumentException(message: "Location can't be null");
+        }
+        private string PickWetherEmoji()
+        {
+            switch (_location) 
+            {
+                case "London":
+                    return "🌦";
+                    
+                case "California":
+                    return "🌅";
+
+                case "Cape Town":
+                    return "🌤";
+
+                default:
+                    return "🔆";
+
+            }
+
         }
 
-        public string Check1()
+        private string PickTemperatureEmoji()
         {
-            if (Location == "London")
+            switch (_temperatureInCelsius)
             {
+                case > NORMAL_TEMPERATURE_UPPER_LIMIT:
+                    return "It's too hot 🥵!";
 
-                return "🌦";
+                case < COLD_TEMPERATURE_UPPER_LIMIT:
+                    return "It's too cold 🥶!";
+
+                default:
+                    return "Ahhh...it's just right 😊!";
 
             }
-            else if (Location == "California")
-            {
 
-                return "🌅";
-
-            }
-            else if (Location == "Cape Town")
-            {
-
-                return "🌤";
-
-            }
-            return "🔆";
-        }
-
-        public string Check2()
-        {
-            if (Temperature > 30)
-            {
-
-                return "It's too hot 🥵!";
-
-            }
-            else if (Temperature < 10)
-            {
-
-                return "It's too cold 🥶!";
-
-            }
-            return "Ahhh...it's just right 😊!";
         }
 
     }

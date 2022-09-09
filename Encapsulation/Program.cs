@@ -55,4 +55,13 @@ Console.WriteLine("Let's make a lot of money right now! Let's change the account
 Console.WriteLine("Oh no :( It looks like we can't do this - it's too secure!");
 //mySecureBankAccount._accountBalance = 1000000;
 mySecureBankAccount.DisplayAccountBalanceDetails();
-Console.WriteLine("😹 Well I guess that's secure!");
+Console.WriteLine("😹 Well I guess that's secure!\n");
+
+
+//WEATHER REPORTER
+Console.WriteLine("---- Your Weather Report ----\n");
+
+WeatherReporter myWeatherReport = new();
+Console.WriteLine(myWeatherReport.GetWeatherReport("California",29));
+Console.WriteLine(myWeatherReport.GetWeatherReport("London", 9));
+Console.WriteLine(myWeatherReport.GetWeatherReport("Cape Town", 35));
