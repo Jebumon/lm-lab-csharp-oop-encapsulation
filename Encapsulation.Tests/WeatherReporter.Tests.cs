@@ -50,14 +50,14 @@ namespace Encapsulation.Tests
         }
 
         [Test]
-        public void Location_Empty_Temperature_1()
+        public void Location_Empty_Temperature_1_Exception()
         {
             var ex = Assert.Throws<ArgumentException>(() => _myWeatherReporter.GetWeatherReport("", 1));
             Assert.That(ex.Message, Is.EqualTo(Expected_Output_Location_EmptyNull_Temperature_1));
         }
 
         [Test]
-        public void Location_null_Temperature_1()
+        public void Location_null_Temperature_1_Exception()
         {
             var ex = Assert.Throws<ArgumentException>(() => _myWeatherReporter.GetWeatherReport(null, 1));
             Assert.That(ex.Message, Is.EqualTo(Expected_Output_Location_EmptyNull_Temperature_1));

@@ -13,15 +13,18 @@ namespace Encapsulation.Models
             _accountBalance = 0;
         }
 
-        public void DepositAmount(int amount)
+        public string DepositAmount(int amount)
         {
             _accountBalance += amount;
             AddReward();
+            return $"You successfully deposited 30 to your account, balance is {_accountBalance} " +
+                                                        $"congragulations you got a reward of 50!!!";
         }
 
-        public void DisplayAccountBalanceDetails()
+        public string DisplayAccountBalanceDetails()
         {
             Console.WriteLine($"Your account balance is {_accountBalance}");
+            return $"Your account balance is {_accountBalance}";
         }
 
         public void DebitAmount(int amount)

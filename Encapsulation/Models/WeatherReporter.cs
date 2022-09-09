@@ -60,7 +60,6 @@ namespace Encapsulation.Models
 
                 default:
                     return "Ahhh...it's just right 😊!";
-
             }
 
         }
